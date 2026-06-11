@@ -1,0 +1,38 @@
+name: validate
+
+# 콘텐츠/문서가 바뀌는 PR과 main push에서 구조·링크를 검증한다.
+on:
+  pull_request:
+    paths:
+      - "content/**"
+      - "**.md"
+      - ".github/scripts/**"
+      - ".github/workflows/validate.yml"
+  push:
+    branches: [main]
+
+# 검증 job은 읽기만 한다. 토큰 권한을 최소로 고정.
+permissions:
+  contents: read
+
+jobs:
+  structure:
+    name: 구조 검증
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: 글 폴더 구조 검증
+        run: python3 .github/scripts/validate_structure.py
+
+  links:
+    name: 링크 검증
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: 깨진 링크 검사 (내부 링크/파일 경로)
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # --offline: 외부 URL은 건너뛰고 상대 경로/파일 링크만 검사.
+          # 외부 링크는 시간이 지나면 자연히 죽으므로 머지 차단 대상에서 제외한다.
+          args: --offline --no-progress content README.md CONTRIBUTING.md
+          fail: true
