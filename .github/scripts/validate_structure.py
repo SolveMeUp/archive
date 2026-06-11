@@ -91,10 +91,12 @@ def main() -> int:
     # 3) 에셋(이미지 등)만 있고 index.md가 없는 '유령 글 폴더'를 잡는다.
     #    글 = 폴더 + index.md 이므로, 본문 없이 에셋만 들어온 폴더는 실수다.
     #    (하위 폴더만 가진 카테고리 폴더, .gitkeep만 있는 폴더는 대상이 아니다)
+    #    .gitkeep·.DS_Store 등 점(.)으로 시작하는 파일은 OS/도구 부산물이며
+    #    글 에셋이 아니므로 제외한다.
     asset_folders = {
         f.parent
         for f in CONTENT.rglob("*")
-        if f.is_file() and f.name != ".gitkeep" and f.suffix != ".md"
+        if f.is_file() and not f.name.startswith(".") and f.suffix != ".md"
     }
     for folder in asset_folders:
         if not (folder / "index.md").exists():
