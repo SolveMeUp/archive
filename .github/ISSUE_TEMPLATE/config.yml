@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: 글 기여 (Pull Request)
+    url: https://github.com/SolveMeUp/archive/blob/main/CONTRIBUTING.md
+    about: 새 글은 Issue가 아니라 Pull Request로 기여해 주세요. 작성 방법은 가이드를 참고하세요.

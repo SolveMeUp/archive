@@ -1,0 +1,6 @@
+# archive 큐레이터 — 모든 변경은 아래 멤버 중 1명 이상의 리뷰가 필요합니다.
+# main 브랜치 룰셋의 "Require review from Code Owners"와 짝을 이룹니다.
+# (이 파일이 없으면 그 규칙이 가리킬 owner가 없어 사실상 무력화됩니다.)
+#
+# 큐레이터 = SolveMeUp org 멤버 전원
+*   @FickleBoBo @choijw1004 @ghlim00
