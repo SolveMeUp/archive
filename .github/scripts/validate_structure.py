@@ -43,12 +43,33 @@ SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 CONTENT = Path("content")
 
 
+def parse_frontmatter(text: str) -> dict | None:
+    """index.md 맨 위의 YAML frontmatter를 최소 파싱한다.
+
+    외부 의존성(PyYAML) 없이 '키: 값' 한 줄 형태만 읽는다.
+    우리 frontmatter는 id·title 정도로 단순해 이 정도면 충분하다.
+    맨 위가 '---'로 시작하지 않거나 닫는 '---'가 없으면 None을 반환한다.
+    """
+    lines = text.splitlines()
+    if not lines or lines[0].strip() != "---":
+        return None
+    fields: dict[str, str] = {}
+    for line in lines[1:]:
+        if line.strip() == "---":
+            return fields
+        m = re.match(r"^([A-Za-z][A-Za-z0-9_]*):\s*(.*)$", line)
+        if m:
+            fields[m.group(1)] = m.group(2).strip()
+    return None  # 닫는 '---' 가 없다
+
+
 def main() -> int:
     if not CONTENT.is_dir():
         print("content/ 디렉토리가 없습니다.")
         return 1
 
     errors: list[str] = []
+    seen_ids: dict[str, str] = {}  # id -> 그 id를 처음 쓴 글 경로 (유일성 검사용)
 
     # 1) content/ 아래의 모든 마크다운은 index.md 여야 한다.
     #    (한 글 = 폴더 + index.md 규칙. dijkstra.md 같은 평면 파일 금지)
@@ -87,6 +108,35 @@ def main() -> int:
                 f"{folder.as_posix()}: 슬러그 '{slug}'가 kebab-case가 아닙니다. "
                 f"(소문자/숫자/하이픈만, 예: binary-search)"
             )
+
+        # 2-1) frontmatter(id·title)를 검증한다.
+        #      id는 본 서비스가 글을 참조하는 불변 키이므로 유일·kebab-case를 강제한다.
+        fm = parse_frontmatter(index.read_text(encoding="utf-8"))
+        if fm is None:
+            errors.append(
+                f"{index.as_posix()}: 맨 위에 frontmatter가 없습니다. "
+                f"index.md는 '---'로 감싼 id·title로 시작해야 합니다."
+            )
+            continue
+
+        if not fm.get("title"):
+            errors.append(f"{index.as_posix()}: frontmatter에 title이 없습니다.")
+
+        gid = fm.get("id", "")
+        if not gid:
+            errors.append(f"{index.as_posix()}: frontmatter에 id가 없습니다.")
+        elif not SLUG_RE.match(gid):
+            errors.append(
+                f"{index.as_posix()}: id '{gid}'가 kebab-case가 아닙니다. "
+                f"(소문자/숫자/하이픈만)"
+            )
+        elif gid in seen_ids:
+            errors.append(
+                f"{index.as_posix()}: id '{gid}'가 이미 {seen_ids[gid]}에서 "
+                f"쓰였습니다. id는 저장소 전체에서 유일해야 합니다."
+            )
+        else:
+            seen_ids[gid] = index.as_posix()
 
     # 3) 에셋(이미지 등)만 있고 index.md가 없는 '유령 글 폴더'를 잡는다.
     #    글 = 폴더 + index.md 이므로, 본문 없이 에셋만 들어온 폴더는 실수다.

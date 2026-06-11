@@ -1,3 +1,8 @@
+---
+id: binary-exponentiation
+title: 이진 거듭제곱 (Binary Exponentiation)
+---
+
 # 이진 거듭제곱 (Binary Exponentiation)
 
 ## 1. 이진 거듭제곱
