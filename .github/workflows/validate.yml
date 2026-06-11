@@ -1,13 +1,11 @@
 name: validate
 
-# 콘텐츠/문서가 바뀌는 PR과 main push에서 구조·링크를 검증한다.
+# 모든 PR과 main push에서 구조·링크를 검증한다.
+# paths 필터는 일부러 두지 않는다 — 룰셋이 이 두 체크를 "필수"로 요구하므로,
+# 특정 경로를 안 건드리는 PR에서 job이 생성되지 않으면 체크가 영영 pending 되어
+# 머지가 막힌다(데드락). job이 가벼우니 매 PR마다 무조건 돌린다.
 on:
   pull_request:
-    paths:
-      - "content/**"
-      - "**.md"
-      - ".github/scripts/**"
-      - ".github/workflows/validate.yml"
   push:
     branches: [main]
 
