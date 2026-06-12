@@ -1,9 +1,8 @@
 name: Archive CD
 
-# Step 1(현재): main 머지 시 이미지를 빌드해 ghcr에 push 한다.
-#   - 서버 자동 배포(SSH)는 아직 없음 — compose에 archive 서비스가 올라간 뒤(Step 2)
-#     Step 3에서 배포 스텝을 추가한다. (상세 설계: memory/deploy_pipeline)
-#   - 시크릿 불필요: ghcr push는 자동 제공되는 GITHUB_TOKEN으로 충분(packages: write).
+# main 머지 시: 이미지 빌드 → ghcr push → 홈서버 SSH 배포 → Discord 알림.
+# 기존 인프라(Client CD)와 동일 패턴을 미러한다. 단 archive 이미지는 public이라
+# 서버측 `docker login ghcr.io`가 불필요(Client는 private이라 로그인함). (설계: memory/deploy_pipeline)
 on:
   push:
     branches: ["main"]
@@ -13,7 +12,7 @@ permissions:
   packages: write # GHCR push용
 
 jobs:
-  build-push:
+  build-push-deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -37,3 +36,44 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: ghcr.io/solvemeup/archive:dev
+
+      - name: Deploy to Home Server (archive)
+        env:
+          DEPLOY_HOST: ${{ secrets.DEPLOY_HOST }}
+          DEPLOY_USER: ${{ secrets.DEPLOY_USER }}
+          DEPLOY_SSH_KEY_B64: ${{ secrets.DEPLOY_SSH_KEY_B64 }}
+        run: |
+          mkdir -p ~/.ssh
+          echo "$DEPLOY_SSH_KEY_B64" | base64 -d > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ${DEPLOY_USER}@${DEPLOY_HOST} << EOF
+            cd /home/solvemeup/deploy
+            docker compose pull archive
+            docker compose up -d archive
+          EOF
+
+      - name: Notify Discord (success)
+        if: success()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          BRANCH="${GITHUB_REF_NAME}"
+          SHORT_SHA="${GITHUB_SHA::7}"
+          COMMIT_MSG="${{ github.event.head_commit.message }}"
+          MSG="✅ Archive CD 성공\n- branch: ${BRANCH}\n- commit: ${SHORT_SHA}\n- message: ${COMMIT_MSG}\n- actor: ${GITHUB_ACTOR}\n- repo: ${GITHUB_REPOSITORY}"
+          curl -H "Content-Type: application/json" \
+               -d "{\"content\":\"${MSG}\"}" \
+               "$DISCORD_WEBHOOK_URL"
+
+      - name: Notify Discord (failure)
+        if: failure()
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: |
+          BRANCH="${GITHUB_REF_NAME}"
+          SHORT_SHA="${GITHUB_SHA::7}"
+          MSG="❌ Archive CD 실패\n- branch: ${BRANCH}\n- commit: ${SHORT_SHA}\n- actor: ${GITHUB_ACTOR}\n- repo: ${GITHUB_REPOSITORY}\n- Actions 로그 확인 필요"
+          curl -H "Content-Type: application/json" \
+               -d "{\"content\":\"${MSG}\"}" \
+               "$DISCORD_WEBHOOK_URL"
