@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
@@ -47,10 +47,10 @@ jobs:
           echo "$DEPLOY_SSH_KEY_B64" | base64 -d > ~/.ssh/id_ed25519
           chmod 600 ~/.ssh/id_ed25519
 
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 ${DEPLOY_USER}@${DEPLOY_HOST} << EOF
-            cd /home/solvemeup/deploy
-            docker compose pull archive
-            docker compose up -d archive
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/id_ed25519 "${DEPLOY_USER}@${DEPLOY_HOST}" << 'EOF'
+          cd /home/solvemeup/deploy
+          docker compose pull archive
+          docker compose up -d archive
           EOF
 
       - name: Notify Discord (success)
