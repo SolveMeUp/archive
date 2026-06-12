@@ -1,0 +1,77 @@
+# archive를 정적 사이트로 빌드하는 설정.
+# 콘텐츠(content/)는 순수 마크다운 그대로 두고 여기서 소비만 한다(docs_dir).
+# 운영 시 solvemeup.com/archive/ 서브패스로 nginx 마운트(별도 배포 단계).
+
+site_name: SolveMeUp Archive
+site_description: SolveMeUp 자료구조·알고리즘 지식 아카이브
+site_url: https://solvemeup.com/archive/
+copyright: 글 콘텐츠는 CC BY-SA 4.0
+
+repo_url: https://github.com/SolveMeUp/archive
+repo_name: SolveMeUp/archive
+
+# 글은 content/ 아래에 있다. content/는 도구 전용 문법 없이 순수하게 유지(이식 안전망).
+docs_dir: content
+
+# 내비게이션 — 지금은 명시적으로 둔다.
+# - 카테고리: 한글 (영문) 라벨을 손으로 단다.
+# - 글: 경로만 적으면 MkDocs가 그 글의 frontmatter title을 라벨로 자동 사용한다
+#       (제목이 이미 "한글 (English)" 병기라 라벨도 자동 병기 + 제목 변경 시 자동 동기화).
+# NOTE: 빈 카테고리는 안 띄운다 — 글이 생길 때 라벨+경로를 추가. 글/기여자가 많아지면
+#       mkdocs-awesome-nav(폴더 자동 + 폴더별 한글 title)로 이행 권장.
+nav:
+  - 홈: index.md
+  - 수학 (Math):
+      - math/binary-exponentiation/index.md
+
+theme:
+  name: material
+  custom_dir: overrides   # KaTeX 주입 등 테마 레이어 — content/를 오염시키지 않기 위함
+  language: ko
+  # NOTE: 아래 색은 임시 placeholder. Client(Tailwind v4) navy·neonlime 토큰으로
+  #       교체 예정. Material 팔레트는 명명색만 받으므로 정확한 hex는 추후 extra_css로.
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: lime
+      toggle:
+        icon: material/weather-night
+        name: 다크 모드로 전환
+    - scheme: slate
+      primary: indigo
+      accent: lime
+      toggle:
+        icon: material/weather-sunny
+        name: 라이트 모드로 전환
+  features:
+    # navigation.indexes는 일부러 안 쓴다 — 우리는 글마다 index.md라
+    #   (math/<slug>/index.md), 이 기능을 켜면 글의 index.md가 카테고리 대표 페이지로
+    #   오인돼 사이드바에서 글 항목이 사라진다.
+    - navigation.top
+    - toc.follow
+    - content.code.copy
+    - search.suggest
+    - search.highlight
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.superfences
+  # 수식: generic 모드로 출력 → overrides/main.html의 KaTeX auto-render가 렌더.
+  - pymdownx.arithmatex:
+      generic: true
+
+plugins:
+  # 클라이언트사이드 전문검색(백엔드 0). 한국어는 lunr-languages에 스테머가 없어
+  # 기본 토크나이저(어절/공백)로 색인된다 — 영문 알고리즘 용어 위주 검색엔 충분한지
+  # 스파이크에서 실측한다.
+  - search:
+      lang:
+        - en

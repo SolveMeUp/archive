@@ -5,6 +5,7 @@ CONTRIBUTING.md의 규칙을 그대로 자동화한다.
   - 한 글 = 폴더 하나 + 그 안의 index.md (본문은 반드시 index.md)
   - 슬러그(글 폴더명)는 kebab-case
   - 글은 아래에 정의된 '알려진 카테고리' 바로 밑에만 둔다 (임의 카테고리 폴더 금지)
+  - 단, content/index.md(루트)는 사이트 홈페이지라 글 규칙에서 면제한다
 
 카테고리 트리는 CONTRIBUTING.md의 '카테고리' 섹션과 짝이다.
 새 카테고리를 합의해 추가할 때는 두 곳을 함께 고친다.
@@ -87,10 +88,8 @@ def main() -> int:
         parts = rel.parts
 
         if not parts:
-            errors.append(
-                "content/index.md: 글은 카테고리 폴더 아래에 두어야 합니다. "
-                "content/ 루트에 직접 둘 수 없습니다."
-            )
+            # content/index.md = 사이트 홈페이지(SSG 랜딩). 글이 아니므로
+            # 카테고리·슬러그·frontmatter id 규칙에서 면제한다.
             continue
 
         slug = parts[-1]

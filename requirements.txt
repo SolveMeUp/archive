@@ -1,0 +1,4 @@
+# archive 정적 사이트(SSG) 빌드 의존성.
+# mkdocs-material이 mkdocs·pymdown-extensions(arithmatex 등)를 함께 끌어온다.
+# 상한(<10)은 MkDocs 2.0의 비호환 변경(테마 오버라이드 붕괴 등)에 자동으로 빨려들지 않게.
+mkdocs-material>=9.5,<10

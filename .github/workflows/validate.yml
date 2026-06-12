@@ -34,3 +34,20 @@ jobs:
           # 외부 링크는 시간이 지나면 자연히 죽으므로 머지 차단 대상에서 제외한다.
           args: --offline --no-progress content README.md CONTRIBUTING.md
           fail: true
+
+  build:
+    name: 빌드 검증
+    runs-on: ubuntu-latest
+    # 정적 사이트가 실제로 빌드되는지 확인한다(구조·링크 검증만으로는 못 잡는
+    # nav 경로 오류·설정 오타·끊긴 내부 링크 등을 --strict가 잡는다).
+    # NOTE: 머지를 막으려면 룰셋의 required status check에 이 job을 추가해야 한다.
+    #       지금은 정보용(초록/빨강 표시만)이다.
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - name: 의존성 설치
+        run: pip install -r requirements.txt
+      - name: 정적 사이트 빌드 (깨지면 실패)
+        run: mkdocs build --strict
