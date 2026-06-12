@@ -60,8 +60,7 @@ jobs:
         run: |
           BRANCH="${GITHUB_REF_NAME}"
           SHORT_SHA="${GITHUB_SHA::7}"
-          COMMIT_MSG="${{ github.event.head_commit.message }}"
-          MSG="✅ Archive CD 성공\n- branch: ${BRANCH}\n- commit: ${SHORT_SHA}\n- message: ${COMMIT_MSG}\n- actor: ${GITHUB_ACTOR}\n- repo: ${GITHUB_REPOSITORY}"
+          MSG="✅ Archive CD 성공\n- branch: ${BRANCH}\n- commit: ${SHORT_SHA}\n- actor: ${GITHUB_ACTOR}\n- repo: ${GITHUB_REPOSITORY}"
           curl -H "Content-Type: application/json" \
                -d "{\"content\":\"${MSG}\"}" \
                "$DISCORD_WEBHOOK_URL"
