@@ -27,6 +27,7 @@ KNOWN_CATEGORIES = {
     "graph/scc",
     "graph/network-flow",
     "dp",
+    "dp/knapsack",
     "dp/optimization",
     "string",
     "math",

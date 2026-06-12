@@ -21,6 +21,10 @@ docs_dir: content
 #       mkdocs-awesome-nav(폴더 자동 + 폴더별 한글 title)로 이행 권장.
 nav:
   - 홈: index.md
+  - 동적 계획법 (DP):
+      - 배낭 (Knapsack):
+          - dp/knapsack/0-1-knapsack/index.md
+          - dp/knapsack/unbounded-knapsack/index.md
   - 수학 (Math):
       - math/binary-exponentiation/index.md
 
@@ -54,6 +58,13 @@ markdown_extensions:
   - attr_list
   - md_in_html
   - footnotes
+  # 강조(**굵게**) 렌더 보강. 기본 마크다운은 닫는 `**` 바로 뒤에 한글 조사가
+  # 붙으면(예: `**배낭 문제(Knapsack Problem)**는`) 강조 종료로 인식 못 해 굵어지지
+  # 않는다(닫는 토큰이 `)`+한글 사이라 smart 규칙에 걸림). betterem을
+  # smart_enable: underscore 로 켜면 `_`는 smart(식별자 my_var 오인 방지) 유지,
+  # `*`/`**`는 classic(관대) 처리 → 한글 조사 인접 굵게가 정상 렌더된다.
+  - pymdownx.betterem:
+      smart_enable: underscore
   - toc:
       permalink: true
   - pymdownx.highlight:
