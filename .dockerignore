@@ -1,0 +1,9 @@
+# 빌드 컨텍스트에서 제외 — 이미지 빌드에 불필요한 것/로컬 산출물만.
+# 로컬 site/는 넣지 않는다(mkdocs가 컨테이너 안에서 직접 빌드 — stale 방지).
+.git
+.github
+site/
+venv/
+.venv/
+__pycache__/
+.DS_Store
