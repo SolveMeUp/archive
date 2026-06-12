@@ -6,6 +6,7 @@ CONTRIBUTING.md의 규칙을 그대로 자동화한다.
   - 슬러그(글 폴더명)는 kebab-case
   - 글은 아래에 정의된 '알려진 카테고리' 바로 밑에만 둔다 (임의 카테고리 폴더 금지)
   - 단, content/index.md(루트)는 사이트 홈페이지라 글 규칙에서 면제한다
+  - content/stylesheets/ 등 예약 디렉토리(RESERVED_DIRS)는 사이트 에셋이라 면제한다
 
 카테고리 트리는 CONTRIBUTING.md의 '카테고리' 섹션과 짝이다.
 새 카테고리를 합의해 추가할 때는 두 곳을 함께 고친다.
@@ -40,6 +41,11 @@ KNOWN_CATEGORIES = {
 }
 
 SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
+
+# content/ 아래에서 '글'이 아니라 사이트 에셋을 담는 예약 디렉토리.
+# 여기 파일은 글 구조 검사(폴더+index.md 규칙)에서 면제한다.
+# (MkDocs extra_css 경로가 docs_dir=content 기준이라 브랜드 CSS를 여기 둔다.)
+RESERVED_DIRS = {"stylesheets"}
 
 CONTENT = Path("content")
 
@@ -145,7 +151,10 @@ def main() -> int:
     asset_folders = {
         f.parent
         for f in CONTENT.rglob("*")
-        if f.is_file() and not f.name.startswith(".") and f.suffix != ".md"
+        if f.is_file()
+        and not f.name.startswith(".")
+        and f.suffix != ".md"
+        and f.relative_to(CONTENT).parts[0] not in RESERVED_DIRS
     }
     for folder in asset_folders:
         if not (folder / "index.md").exists():
