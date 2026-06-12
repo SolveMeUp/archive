@@ -69,6 +69,7 @@ content/
 │   ├── scc/
 │   └── network-flow/
 ├── dp/
+│   ├── knapsack/
 │   └── optimization/
 ├── string/
 ├── math/
