@@ -28,21 +28,17 @@ theme:
   name: material
   custom_dir: overrides   # KaTeX 주입 등 테마 레이어 — content/를 오염시키지 않기 위함
   language: ko
-  # NOTE: 아래 색은 임시 placeholder. Client(Tailwind v4) navy·neonlime 토큰으로
-  #       교체 예정. Material 팔레트는 명명색만 받으므로 정확한 hex는 추후 extra_css로.
+  # 폰트는 시스템 스택을 쓴다(font: false). 본앱(Client)이 전용 웹폰트 없이 시스템
+  # 폰트를 쓰므로 타이포 소스를 맞추고, Google Fonts(Roboto) 의존도 없앤다.
+  font: false
+  # 색 = 본앱 Tailwind @theme 토큰에 맞춘다(통일감). 라이트 전용:
+  #   본앱이 라이트 전용(다크 미지원)이라 다크 토글을 두지 않는다.
+  #   primary: white = 흰 헤더(어두운 텍스트). 나머지 디테일(navy 링크·base 코드배경·
+  #   neonlime 헤더 라인)은 stylesheets/extra.css가 CSS 변수로 입힌다.
   palette:
-    - scheme: default
-      primary: indigo
-      accent: lime
-      toggle:
-        icon: material/weather-night
-        name: 다크 모드로 전환
-    - scheme: slate
-      primary: indigo
-      accent: lime
-      toggle:
-        icon: material/weather-sunny
-        name: 라이트 모드로 전환
+    scheme: default
+    primary: white
+    accent: indigo   # 실제 링크/hover 색은 extra.css에서 navy로 오버라이드
   features:
     # navigation.indexes는 일부러 안 쓴다 — 우리는 글마다 index.md라
     #   (math/<slug>/index.md), 이 기능을 켜면 글의 index.md가 카테고리 대표 페이지로
@@ -75,3 +71,9 @@ plugins:
   - search:
       lang:
         - en
+
+# 브랜드 테마(본앱 토큰 매핑). 경로는 docs_dir(content/) 기준.
+# content/stylesheets/는 글이 아니라 '사이트 에셋' 예약 폴더라
+# 구조 검증(validate_structure.py)에서 면제된다.
+extra_css:
+  - stylesheets/extra.css

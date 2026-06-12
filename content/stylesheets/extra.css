@@ -1,0 +1,75 @@
+/* SolveMeUp Archive 브랜드 테마
+ *
+ * 본앱(Client)의 Tailwind @theme 토큰을 MkDocs Material CSS 변수에 매핑해
+ * "같은 사이트" 느낌을 준다. 토큰:
+ *   neonlime #7CFF00 · base #F3F6F9 · navy #3F4864 · black #252A3C · gray #9EA4B3
+ *
+ * 원칙(앱과 동일): neonlime은 '포인트'(헤더 라인)로만 쓰고 본문·링크는 navy/black.
+ *   연두는 흰 배경에서 텍스트 대비가 안 나오므로 텍스트색으로는 쓰지 않는다.
+ * 흰 헤더 자체는 mkdocs.yml의 palette.primary: white가 처리한다(여긴 디테일만).
+ */
+
+[data-md-color-scheme="default"] {
+  /* 본문 텍스트 = SMU black */
+  --md-typeset-color: #252a3c;
+
+  /* 링크 = navy (hover/focus에 쓰이는 accent도 navy 계열로) */
+  --md-typeset-a-color: #3f4864;
+  --md-accent-fg-color: #3f4864;
+
+  /* 인라인·블록 코드 배경 = base 회색 (앱 카드 surface 톤과 일치) */
+  --md-code-bg-color: #f3f6f9;
+  --md-code-fg-color: #252a3c;
+}
+
+/* 헤더 하단 neonlime 포인트 라인 — 앱 브랜드의 '한 방울' */
+.md-header {
+  border-bottom: 2px solid #7cff00;
+}
+
+/* 헤더와 본문 사이 여백 — 기본값이 좁아 답답해 보인다.
+ * 본문+사이드바 컨테이너를 내리고(margin-top), 본문 컬럼 위쪽에도 패딩을 더해
+ * 헤더 아래로 확실히 띄운다(앱의 넉넉한 섹션 여백 결). */
+.md-main__inner {
+  margin-top: 3.5rem;
+}
+.md-content__inner {
+  padding-top: 1rem;
+}
+
+/* 타이포 위계를 앱 결로.
+ * 폰트(시스템/SF)는 같지만 Material 기본은 제목이 가볍고(h1은 weight 300) 톤다운돼
+ * 앱의 묵직한 extrabold/bold 제목과 위계가 달라 어색하게 느껴진다.
+ * 제목을 굵게 + SMU black + 살짝 tracking-tight로 당겨 또렷하게 만든다. */
+.md-typeset h1 {
+  font-weight: 800;
+  letter-spacing: -0.015em;
+  color: #252a3c;
+}
+.md-typeset h2 {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #252a3c;
+  /* 제목 ↔ 바로 아래 문단 사이를 띄운다(기본 ~0.64em이라 붙어 보임). */
+  margin-bottom: 1.3em;
+}
+.md-typeset h3 {
+  font-weight: 700;
+  color: #252a3c;
+  margin-bottom: 1em;
+}
+
+/* 사이드바 현재 글 = navy 볼드.
+   primary가 white라 기본 활성색(흰색)이 안 보이는 것을 보정한다. */
+.md-nav__link--active,
+.md-nav__link--active > .md-ellipsis {
+  color: #3f4864;
+  font-weight: 700;
+}
+
+/* 앱의 rounded-xl/2xl 결을 코드블록·admonition에 옅게 반영 */
+.md-typeset pre > code,
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 12px;
+}
