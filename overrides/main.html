@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{#
+  KaTeX 수식 렌더를 테마 레이어에서 주입한다.
+  - content/(docs_dir)에 JS를 두면 순수성이 깨지고 validate_structure.py의
+    "에셋만 있고 index.md 없는 폴더" 규칙에 CI가 걸린다. 그래서 여기(overrides)에 둔다.
+  - pymdownx.arithmatex(generic)가 본문 수식을 \( \) / \[ \] 로 출력하면
+    auto-render가 그걸 찾아 렌더한다.
+  - instant navigation 미사용이므로 매 페이지 로드마다 DOMContentLoaded가 발생 → 자동 렌더 보장.
+#}
+{% block extrahead %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16/dist/contrib/auto-render.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      renderMathInElement(document.body, {
+        // arithmatex generic은 수식을 \(...\)/\[...\]로 출력하므로 이 둘만 처리한다.
+        // $·$$는 일부러 뺀다 — 본문에 들어갈 수 있는 리터럴 달러($5 등)를 수식으로 오인하지 않게.
+        delimiters: [
+          { left: "\\(", right: "\\)", display: false },
+          { left: "\\[", right: "\\]", display: true  }
+        ],
+        throwOnError: false
+      });
+    });
+  </script>
+{% endblock %}
