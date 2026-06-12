@@ -74,6 +74,19 @@
   border-radius: 12px;
 }
 
+/* 본문 링크 가시성 — navy 색만으론 본문 black 텍스트와 명도가 비슷해 '링크인지'
+ * 분간이 안 됐다. 관례대로 밑줄을 붙여 링크임을 명확히 한다(브랜드색 navy는 유지).
+ *   - 제목 옆 permalink(¶ .headerlink)는 아이콘이라 제외.
+ *   - hover 시 밑줄을 neonlime으로 — 브랜드 포인트 + 클릭 피드백. */
+.md-typeset a:not(.headerlink) {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+.md-typeset a:not(.headerlink):hover {
+  text-decoration-color: #7cff00;
+}
+
 /* 헤더 브레드크럼 타이틀(overrides/partials/header.html): 'SolveMeUp ▸ Archive'.
  * 'SolveMeUp'은 본 서비스(/)로 돌아가는 링크 — navy로 클릭 가능함을 드러내고,
  * '▸'는 gray 구분자, 'Archive'는 현재 위치라 기본 헤더색(black) 유지. */
