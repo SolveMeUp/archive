@@ -73,3 +73,30 @@
 .md-typeset details {
   border-radius: 12px;
 }
+
+/* 헤더 브레드크럼 타이틀(overrides/partials/header.html): 'SolveMeUp ▸ Archive'.
+ * 'SolveMeUp'은 본 서비스(/)로 돌아가는 링크 — navy로 클릭 가능함을 드러내고,
+ * '▸'는 gray 구분자, 'Archive'는 현재 위치라 기본 헤더색(black) 유지. */
+.md-header__title .smu-home-link {
+  color: #3f4864;
+  font-weight: 700;
+}
+.md-header__title .smu-home-link:hover,
+.md-header__title .smu-home-link:focus {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.md-header__title .smu-sep {
+  margin: 0 0.4em;
+  color: #9ea4b3;
+}
+/* 'Archive'는 현재 위치라 기본 헤더색(black) 유지하되 아카이브 홈으로 클릭 가능 —
+ * hover 시 밑줄로 클릭 가능함을 드러낸다(SolveMeUp만큼 강조하지는 않음). */
+.md-header__title .smu-archive-link {
+  color: inherit;
+}
+.md-header__title .smu-archive-link:hover,
+.md-header__title .smu-archive-link:focus {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
