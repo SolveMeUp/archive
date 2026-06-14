@@ -1,9 +1,12 @@
 # 카테고리 한글(영문) 라벨.
-# 두 글은 파일명 자동정렬이 학습 흐름과 어긋난다('-'<'.'이라 sliding-window-maximum이
-# 기본 sliding-window보다 앞으로). 그래서 교육 순서를 명시 고정한다.
-# 기본 슬라이딩 윈도우(구간 합) → 단조 큐 응용 슬라이딩 윈도우(구간 최대/최소).
+# technique 폴더의 글들은 파일명 자동정렬이 학습 흐름과 어긋나 교육 순서를 명시 고정한다.
+#  - 슬라이딩 윈도우: '-'<'.'이라 sliding-window-maximum이 기본보다 앞서 역순이 됨.
+#  - 누적 합: '2'<'p'라 2d-prefix-sum이 prefix-sum보다 앞서 역순이 됨.
+# 기본 슬라이딩 윈도우(구간 합) → 단조 큐 응용 / 1차원 누적 합 → 2차원 누적 합 순서로 묶는다.
 # 적은 글은 이 순서, 나머지(새 글)는 자동으로 뒤에 붙는다(append_unmatched).
 title: 테크닉 (Technique)
 nav:
   - sliding-window.md
   - sliding-window-maximum.md
+  - prefix-sum.md
+  - 2d-prefix-sum.md
