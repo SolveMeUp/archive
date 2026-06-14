@@ -6,6 +6,7 @@ nav:
   - sorting
   - math
   - dp
+  - technique
 
 # 글이 아닌 사이트 에셋 폴더는 nav에서 제외한다(브랜드 CSS).
 ignore:
