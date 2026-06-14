@@ -33,6 +33,7 @@ KNOWN_CATEGORIES = {
     "graph/network-flow",
     "dp",
     "dp/knapsack",
+    "dp/lcs",
     "dp/lis",
     "dp/optimization",
     "string",
