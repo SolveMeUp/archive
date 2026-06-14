@@ -3,6 +3,7 @@
 # 여기 안 적은 새 최상위 카테고리는 자동으로 뒤에 붙는다(append_unmatched).
 nav:
   - 홈: index.md       # 라벨을 "홈"으로 고정(frontmatter title을 쓰면 site_name과 겹쳐 중복돼 보임)
+  - data-structure
   - sorting
   - math
   - dp
