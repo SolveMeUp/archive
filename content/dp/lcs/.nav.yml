@@ -1,0 +1,9 @@
+# 카테고리 한글(영문) 라벨.
+# 두 글은 부분 수열(기본)·부분 문자열(응용) 한 쌍으로, 부분 문자열 글이
+# 부분 수열 글을 전제로 참조한다. 그래서 교육 순서(수열 → 문자열)를 명시 고정한다.
+# 파일명 자동정렬도 마침 같은 순서(subsequence < substring)지만 의도를 드러내려 나열한다.
+# 적은 글은 이 순서, 나머지(새 글)는 자동으로 뒤에 붙는다(append_unmatched).
+title: LCS (Longest Common Subsequence·Substring)
+nav:
+  - longest-common-subsequence.md
+  - longest-common-substring.md
