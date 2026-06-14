@@ -73,6 +73,7 @@ content/
 │   └── network-flow/
 ├── dp/
 │   ├── knapsack/
+│   ├── lis/
 │   └── optimization/
 ├── string/
 ├── math/
