@@ -1,0 +1,11 @@
+# 최상위 내비게이션 순서. awesome-nav가 이 파일을 읽어 nav를 구성한다.
+# 루트(.nav.yml 최상위)에는 title/hide를 두지 않는다(awesome-nav가 무효 경고 → --strict 빌드 실패).
+# 여기 안 적은 새 최상위 카테고리는 자동으로 뒤에 붙는다(append_unmatched).
+nav:
+  - 홈: index.md       # 라벨을 "홈"으로 고정(frontmatter title을 쓰면 site_name과 겹쳐 중복돼 보임)
+  - dp
+  - math
+
+# 글이 아닌 사이트 에셋 폴더는 nav에서 제외한다(브랜드 CSS).
+ignore:
+  - stylesheets/

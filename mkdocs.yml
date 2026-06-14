@@ -13,21 +13,12 @@ repo_name: SolveMeUp/archive
 # 글은 content/ 아래에 있다. content/는 도구 전용 문법 없이 순수하게 유지(이식 안전망).
 docs_dir: content
 
-# 내비게이션 — 지금은 명시적으로 둔다.
-# - 카테고리: 한글 (영문) 라벨을 손으로 단다.
-# - 글: 경로만 적으면 MkDocs가 그 글의 frontmatter title을 라벨로 자동 사용한다
-#       (제목이 이미 "한글 (English)" 병기라 라벨도 자동 병기 + 제목 변경 시 자동 동기화).
-# NOTE: 빈 카테고리는 안 띄운다 — 글이 생길 때 라벨+경로를 추가. 글/기여자가 많아지면
-#       mkdocs-awesome-nav(폴더 자동 + 폴더별 한글 title)로 이행 권장.
-nav:
-  - 홈: index.md
-  - 동적 계획법 (DP):
-      - 배낭 (Knapsack):
-          - dp/knapsack/0-1-knapsack/index.md
-          - dp/knapsack/bounded-knapsack/index.md
-          - dp/knapsack/unbounded-knapsack/index.md
-  - 수학 (Math):
-      - math/binary-exponentiation/index.md
+# 내비게이션은 awesome-nav 플러그인이 content/ 폴더 구조에서 자동 생성한다(아래 plugins).
+# - 카테고리 한글(영문) 라벨과 표시 순서는 각 폴더의 .nav.yml에 둔다(글과 함께 PR로 관리).
+#   글 라벨은 그 글 frontmatter title이 자동 사용된다.
+# - 글은 평면 <슬러그>.md 파일이라 자동으로 leaf(글 제목 라벨)로 뜬다. 기여자는 글 .md만
+#   알맞은 카테고리에 추가하면 nav에 나타난다(설정 파일 비접촉).
+#   표시 순서가 중요할 때만 해당 카테고리 .nav.yml의 nav: 에 글을 나열한다(관리자 영역).
 
 theme:
   name: material
@@ -45,9 +36,9 @@ theme:
     primary: white
     accent: indigo   # 실제 링크/hover 색은 extra.css에서 navy로 오버라이드
   features:
-    # navigation.indexes는 일부러 안 쓴다 — 우리는 글마다 index.md라
-    #   (math/<slug>/index.md), 이 기능을 켜면 글의 index.md가 카테고리 대표 페이지로
-    #   오인돼 사이드바에서 글 항목이 사라진다.
+    # navigation.indexes는 일부러 안 쓴다 — 켜면 카테고리 폴더의 첫 글이 그 카테고리의
+    #   대표(인덱스) 페이지로 흡수돼 사이드바에서 사라진다(실측 확인). 글은 평면
+    #   <슬러그>.md라 어차피 섹션 인덱스가 필요 없다.
     - navigation.top
     - toc.follow
     - content.code.copy
@@ -83,6 +74,9 @@ plugins:
   - search:
       lang:
         - en
+  # nav를 content/ 폴더 구조에서 자동 생성한다. 폴더별 .nav.yml로 카테고리 한글 라벨·
+  # 표시 순서를 제어하고, 명시 안 한 글은 자동 노출(기여자가 글만 추가하면 nav 반영).
+  - awesome-nav
 
 # 브랜드 테마(본앱 토큰 매핑). 경로는 docs_dir(content/) 기준.
 # content/stylesheets/는 글이 아니라 '사이트 에셋' 예약 폴더라
