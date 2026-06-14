@@ -20,6 +20,16 @@
   /* 인라인·블록 코드 배경 = base 회색 (앱 카드 surface 톤과 일치) */
   --md-code-bg-color: #f3f6f9;
   --md-code-fg-color: #252a3c;
+
+  /* footer를 흰 사이트에 맞춰 밝게 통일한다. Material 기본 footer는 어두운 바라
+   * (1) 이전/다음 네비의 navy 텍스트·카드 테두리가 묻혀 안 보이고
+   * (2) 흰 본문과 톤이 끊긴다. 네비 영역(bg)은 흰색, copyright 바(bg--dark)는
+   * base 회색으로 두고, 글자색도 본문 팔레트(black/navy/gray)로 맞춘다. */
+  --md-footer-bg-color: #ffffff;
+  --md-footer-bg-color--dark: #f3f6f9;
+  --md-footer-fg-color: #252a3c;
+  --md-footer-fg-color--light: #3f4864;
+  --md-footer-fg-color--lighter: #9ea4b3;
 }
 
 /* 헤더 하단 neonlime 포인트 라인 — 앱 브랜드의 '한 방울' */
@@ -85,6 +95,48 @@
 }
 .md-typeset a:not(.headerlink):hover {
   text-decoration-color: #7cff00;
+}
+
+/* ─── 글 하단 이전/다음 네비 (navigation.footer) ───
+ * Material 기본은 흐릿(opacity 0.7)한 평면 링크라 밋밋하고, 바로 아래 어두운
+ * copyright 바와 톤이 안 맞아 어색하다. 본문과 이어지는 카드형(앱 rounded 결)으로
+ * 또렷하게 만들고, hover에 neonlime 포인트를 준다. */
+.md-footer__inner {
+  /* margin 좌우는 auto 유지(중앙 정렬). Material이 본문 컨테이너(.md-main__inner)와
+   * 같은 max-width로 footer를 정렬하므로, 좌우 auto를 건드리면 본문과 어긋난다. */
+  margin: 0 auto 0.5rem;
+  gap: 0.75rem;
+  padding: 2rem 0.8rem 0;
+  border-top: 1px solid #e3e8ef;   /* 흰 footer라 본문과의 경계를 옅게 그어준다 */
+}
+/* prev/next 링크 = 카드. 기본 opacity 0.7 → 1로 또렷하게.
+ * flex로 두 카드가 폭을 균등 분할(각 절반)해 가운데가 휑하지 않게 한다.
+ * max-width로 한쪽만 있는 글(첫/끝)에서 카드가 풀폭으로 늘어나지 않게 막는다. */
+.md-footer__link {
+  flex: 1 1 0;
+  max-width: calc(50% - 0.5rem);
+  opacity: 1;
+  border: 1px solid #e3e8ef;
+  border-radius: 12px;
+  padding: 0.9rem 1.1rem;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+.md-footer__link:hover {
+  border-color: #7cff00;       /* 브랜드 포인트 */
+  background-color: #f3f6f9;   /* base 살짝 */
+}
+/* '이전/다음' 방향 라벨 = gray 작게, 글 제목 = navy 볼드 */
+.md-footer__direction {
+  color: #9ea4b3;
+  font-size: 0.72rem;
+}
+.md-footer__title {
+  color: #3f4864;
+  font-weight: 700;
+}
+/* 화살표 아이콘도 navy로(기본 흰/회색이라 흰 배경에서 흐림) */
+.md-footer__link .md-icon svg {
+  fill: #3f4864;
 }
 
 /* 헤더 브레드크럼 타이틀(overrides/partials/header.html): 'SolveMeUp ▸ Archive'.

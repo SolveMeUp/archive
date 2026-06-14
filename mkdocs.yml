@@ -40,6 +40,9 @@ theme:
     #   대표(인덱스) 페이지로 흡수돼 사이드바에서 사라진다(실측 확인). 글은 평면
     #   <슬러그>.md라 어차피 섹션 인덱스가 필요 없다.
     - navigation.top
+    # 글 하단에 이전/다음 글 링크. 시리즈(정렬 5편 등)를 사이드바로 되돌아가지 않고
+    # 연속해서 읽도록 — 글이 막다른 길이 되지 않게 한다.
+    - navigation.footer
     - toc.follow
     - content.code.copy
     - search.suggest
