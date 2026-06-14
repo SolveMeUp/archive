@@ -54,7 +54,9 @@ SLUG_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 # (MkDocs extra_css 경로가 docs_dir=content 기준이라 브랜드 CSS를 여기 둔다.)
 RESERVED_DIRS = {"stylesheets"}
 
-CONTENT = Path("content")
+# 어느 작업 디렉토리에서 실행해도 동작하도록, 이 스크립트 위치를 기준으로
+# 저장소 루트(.github/scripts/ 의 두 단계 위)의 content/를 찾는다.
+CONTENT = Path(__file__).resolve().parents[2] / "content"
 
 
 def parse_frontmatter(text: str) -> dict | None:
