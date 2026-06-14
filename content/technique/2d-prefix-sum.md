@@ -104,9 +104,3 @@ psum[x2][y2] - psum[x1 - 1][y2] - psum[x2][y1 - 1] + psum[x1 - 1][y1 - 1];
 ```
 
 ---
-
-## 4. Problems
-
-- [BaekJoon 11660번 - 구간 합 구하기 5](https://www.acmicpc.net/problem/11660)
-
----

@@ -136,18 +136,6 @@ vector<bool> sieve(int n) {
 
 ---
 
-## 5. Problems
-
-- [BaekJoon 1929번 - 소수 구하기](https://www.acmicpc.net/problem/1929)
-- [BaekJoon 17103번 - 골드바흐 파티션](https://www.acmicpc.net/problem/17103)
-- [BaekJoon 15965번 - K번째 소수](https://www.acmicpc.net/problem/15965)
-- [BaekJoon 2312번 - 수 복원하기](https://www.acmicpc.net/problem/2312)
-- [BaekJoon 2960번 - 에라토스테네스의 체](https://www.acmicpc.net/problem/2960)
-- [BaekJoon 1963번 - 소수 경로](https://www.acmicpc.net/problem/1963)
-- [BaekJoon 1644번 - 소수의 연속합](https://www.acmicpc.net/problem/1644)
-
----
-
 ## Ref
 
 - [cp-algorithms - Sieve of Eratosthenes](https://cp-algorithms.com/algebra/sieve-of-eratosthenes.html)

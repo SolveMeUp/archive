@@ -76,12 +76,6 @@ int ccw(int x1, int y1, int x2, int y2, int x3, int y3) {
 
 ---
 
-## 5. Problems
-
-- [BaekJoon 1064번 - 평행사변형](https://www.acmicpc.net/problem/1064)
-
----
-
 ## Ref
 
 - [cp-algorithms - Cross Product](https://cp-algorithms.com/geometry/basic-geometry.html#cross-product)

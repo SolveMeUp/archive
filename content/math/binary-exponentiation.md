@@ -123,3 +123,5 @@ int binpow(int a, int n) {
 
 - [cp-algorithms - Binary Exponentiation](https://cp-algorithms.com/algebra/binary-exp.html)
 - [IOI KOREA - 빠른 거듭제곱](https://www.youtube.com/watch?v=6LBjvH39WNo)
+
+---
