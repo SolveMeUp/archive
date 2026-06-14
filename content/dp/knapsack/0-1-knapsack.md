@@ -27,39 +27,39 @@ title: 0/1 배낭 문제 (0/1 Knapsack Problem)
 
 먼저 초기 2차원 배열(= dp 테이블)의 상태는 아래와 같다. 물건의 개수가 $4$ 개이니 행 번호는 4번까지, 배낭 용량이 최대 $7$ 이니 열 번호는 7번까지 세팅해줬다.
 
-![초기 dp 테이블](0-1-knapsack/photo01.drawio.svg)
+![](0-1-knapsack/photo01.drawio.svg)
 
 첫 번째 물건의 무게는 $6$, 가치는 $13$ 이므로 dp 테이블은 아래와 같이 된다. 첫 번째 물건만 고려했을 때, 배낭 용량이 $6$ 미만일 때는 첫 번째 물건을 담을 수 없고, $6$ 부터는 첫 번째 물건을 담을 수 있다.
 
-![첫 번째 물건을 고려한 dp 테이블](0-1-knapsack/photo02.drawio.svg)
+![](0-1-knapsack/photo02.drawio.svg)
 
 두 번째 물건의 무게는 $4$, 가치는 $8$ 이다. 두 번째 물건까지 고려했을 때, 배낭 용량이 $4$ 미만이라면 두 번째 물건을 담을 수 없다. 이때 각 칸에 대해 이전 행은 배낭 용량이 동일하면서 고려한 물건의 번호만 하나 적은 상황일 때 가치의 최댓값을 가지고 있다. 현재 배낭 용량이 $0$ ~ $3$ 까지는 첫 번째 물건도 못 담았으므로 아래와 같이 된다.
 
-![배낭 용량 0~3에서 두 번째 물건을 담을 수 없는 dp 테이블](0-1-knapsack/photo03.drawio.svg)
+![](0-1-knapsack/photo03.drawio.svg)
 
 배낭 용량이 $4$ 일 경우 이제 두 번째 물건을 담을 수 있다. 이러면 두 번째 물건을 담는 것이 이득인지 안 담는 것이 이득인지 판단해야 한다. 두 번째 물건을 담을 수 있을 때 가치의 최댓값은 첫 번째 물건까지만 고려했으면서 배낭 용량이 두 번째 물건의 무게만큼 더 적은 상황에서 두 번째 물건을 담는 경우고, 두 번째 물건을 안 담았을 때 가치의 최댓값은 배낭 용량이 같으면서 첫 번째 물건까지만 고려한 배낭에서 얻을 수 있다. 둘 중 큰 값이 두 번째 물건을 담느냐 안 담느냐를 결정한다. 현재 첫 번째 물건까지만 고려한 상황 중 배낭 용량이 $0$ 인 경우에서 두 번째 물건을 담는게 더 이득이므로 두 번째 물건을 담는다.
 
-![배낭 용량 4에서 두 번째 물건을 담는 dp 테이블](0-1-knapsack/photo04.drawio.svg)
+![](0-1-knapsack/photo04.drawio.svg)
 
 배낭 용량이 $5$ 인 경우도 마찬가지로 두 번째 물건을 담는다.
 
-![배낭 용량 5에서 두 번째 물건을 담는 dp 테이블](0-1-knapsack/photo05.drawio.svg)
+![](0-1-knapsack/photo05.drawio.svg)
 
 배낭 용량이 $6$ 인 경우에는 첫 번째 물건까지만 고려한 상황에서 배낭 용량이 $2$ 일 때 두 번째 물건을 담는 것 보다 첫 번째 물건까지만 고려한 상황에서 배낭 용량이 $6$ 인 경우 두 번째 물건을 안 담는게 더 이득이므로 두 번째 물건을 담지 않는다.
 
-![배낭 용량 6에서 두 번째 물건을 담지 않는 dp 테이블](0-1-knapsack/photo06.drawio.svg)
+![](0-1-knapsack/photo06.drawio.svg)
 
 배낭 용량이 $7$ 인 경우도 마찬가지로 두 번째 물건을 담지 않는다.
 
-![배낭 용량 7에서 두 번째 물건을 담지 않는 dp 테이블](0-1-knapsack/photo07.drawio.svg)
+![](0-1-knapsack/photo07.drawio.svg)
 
 세 번째 물건도 동일한 원리로 담으면 아래와 같이 된다. 세 번째 물건까지 고려했을 때 배낭 용량이 $7$ 인 경우 두 번째 물건까지 고려했을 때 배낭 용량이 $4$ 인 상황에서 세 번째 물건을 담는게, 두 번째 물건까지만 고려했을 때 배낭 용량이 $7$ 인 경우보다 이득이므로 세 번째 물건을 담는다.
 
-![세 번째 물건을 고려한 dp 테이블](0-1-knapsack/photo08.drawio.svg)
+![](0-1-knapsack/photo08.drawio.svg)
 
 네 번째 물건도 동일한 원리로 담으면 아래와 같이 된다. 배낭 용량이 부족해 현재 물건을 담을 수 없는 경우 현재 물건 이전까지를 고려했을 때 담을 수 있었는지를 판단해줘야 한다.
 
-![네 번째 물건을 고려한 완성된 dp 테이블](0-1-knapsack/photo09.drawio.svg)
+![](0-1-knapsack/photo09.drawio.svg)
 
 dp 테이블은 이렇게 완성됐고 이를 통해 $N$ 개의 물건에 대해 배낭 용량이 $0$ ~ $K$ 까지 모든 경우에 대해 가치의 최댓값을 구할 수 있다. 현재 물건을 담을 수 있으면 이전 물건까지 고려한 상황 중 담아보는 경우랑 이전 물건까지 고려한 상황에서 담아 보지 않는 것 중 최댓값을 비교하며 갱신하는 것이 핵심이고 이전 물건 때도 그 이전 물건을 통해 구한 값이라 모든 물건에 대한 비교가 된다.
 
@@ -87,37 +87,37 @@ $(dp[i-1][j - w] + v)$ 가 현재 물건을 담는 경우의 가치이고, $(dp[
 
 첫 번째 물건은 담은 dp 배열은 아래와 같은 상태로 2차원 배열을 활용한 방식과 아직은 별 차이가 없다.
 
-![첫 번째 물건을 담은 1차원 dp 배열](0-1-knapsack/photo10.drawio.svg)
+![](0-1-knapsack/photo10.drawio.svg)
 
 이제 두 번째 물건을 담는 경우 아래와 같은 과정으로 갱신이 발생한다.
 
-![두 번째 물건 갱신 과정 1](0-1-knapsack/photo11.drawio.svg)
+![](0-1-knapsack/photo11.drawio.svg)
 
-![두 번째 물건 갱신 과정 2](0-1-knapsack/photo12.drawio.svg)
+![](0-1-knapsack/photo12.drawio.svg)
 
-![두 번째 물건 갱신 과정 3](0-1-knapsack/photo13.drawio.svg)
+![](0-1-knapsack/photo13.drawio.svg)
 
-![두 번째 물건 갱신 과정 4](0-1-knapsack/photo14.drawio.svg)
+![](0-1-knapsack/photo14.drawio.svg)
 
 세 번째 물건을 담는 경우 아래와 같은 과정으로 갱신이 발생한다.
 
-![세 번째 물건 갱신 과정 1](0-1-knapsack/photo15.drawio.svg)
+![](0-1-knapsack/photo15.drawio.svg)
 
-![세 번째 물건 갱신 과정 2](0-1-knapsack/photo16.drawio.svg)
+![](0-1-knapsack/photo16.drawio.svg)
 
-![세 번째 물건 갱신 과정 3](0-1-knapsack/photo17.drawio.svg)
+![](0-1-knapsack/photo17.drawio.svg)
 
-![세 번째 물건 갱신 과정 4](0-1-knapsack/photo18.drawio.svg)
+![](0-1-knapsack/photo18.drawio.svg)
 
-![세 번째 물건 갱신 과정 5](0-1-knapsack/photo19.drawio.svg)
+![](0-1-knapsack/photo19.drawio.svg)
 
 네 번째 물건을 담는 경우 아래와 같은 과정으로 갱신이 발생한다.
 
-![네 번째 물건 갱신 과정 1](0-1-knapsack/photo20.drawio.svg)
+![](0-1-knapsack/photo20.drawio.svg)
 
-![네 번째 물건 갱신 과정 2](0-1-knapsack/photo21.drawio.svg)
+![](0-1-knapsack/photo21.drawio.svg)
 
-![네 번째 물건 갱신 과정 3](0-1-knapsack/photo22.drawio.svg)
+![](0-1-knapsack/photo22.drawio.svg)
 
 마찬가지로 $N$ 개의 물건에 대해 배낭 용량이 $0$ ~ $K$ 까지 모든 경우에 대해 가치의 최댓값을 구할 수 있다. 만약 역순으로 탐색하지 않으면 이전에 담는 것으로 갱신한 배낭을 다시 비교에 사용하게 돼서 주의해야 한다.
 

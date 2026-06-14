@@ -4,8 +4,8 @@
 nav:
   - 홈: index.md       # 라벨을 "홈"으로 고정(frontmatter title을 쓰면 site_name과 겹쳐 중복돼 보임)
   - sorting
-  - dp
   - math
+  - dp
 
 # 글이 아닌 사이트 에셋 폴더는 nav에서 제외한다(브랜드 CSS).
 ignore:
