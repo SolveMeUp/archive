@@ -40,8 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     # 정적 사이트가 실제로 빌드되는지 확인한다(구조·링크 검증만으로는 못 잡는
     # nav 경로 오류·설정 오타·끊긴 내부 링크 등을 --strict가 잡는다).
-    # NOTE: 머지를 막으려면 룰셋의 required status check에 이 job을 추가해야 한다.
-    #       지금은 정보용(초록/빨강 표시만)이다.
+    # 이 job은 룰셋의 required status check으로 등록돼 있어, 실패하면 머지가 막힌다.
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-python@v5

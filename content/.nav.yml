@@ -10,6 +10,12 @@ nav:
   - geometry
   - technique
 
+# nav에 명시하지 않은 항목(새 최상위 카테고리·새 글)을 자동으로 뒤에 붙인다.
+# 이 설정은 자식 디렉토리(.nav.yml)에도 상속되므로, 순서를 nav로 고정한 하위
+# 카테고리(sorting·data-structure·dp/lis·dp/lcs·technique)에 글을 추가해도
+# 사이드바에서 누락되지 않는다. (awesome-nav 기본값은 false라 명시 필요)
+append_unmatched: true
+
 # 글이 아닌 사이트 에셋 폴더는 nav에서 제외한다(브랜드 CSS).
 ignore:
   - stylesheets/
