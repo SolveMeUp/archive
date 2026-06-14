@@ -1,0 +1,9 @@
+# 카테고리 한글(영문) 라벨.
+# 두 글은 파일명 자동정렬(lis-using-binary-search < longest-increasing-subsequence)이
+# 학습 흐름과 어긋난다(이분 탐색 최적화가 기본 LIS보다 앞으로). 그래서 교육 순서를 명시 고정한다.
+# 기본 O(N^2) LIS → 이분 탐색 O(N log N) 최적화.
+# 적은 글은 이 순서, 나머지(새 글)는 자동으로 뒤에 붙는다(append_unmatched).
+title: LIS (Longest Increasing Subsequence)
+nav:
+  - longest-increasing-subsequence.md
+  - lis-using-binary-search.md
