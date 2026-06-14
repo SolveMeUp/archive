@@ -1,0 +1,12 @@
+# 카테고리 한글(영문) 라벨.
+# 글 순서는 기본 자동정렬(파일명)이지만, 정렬 글은 알파벳순(bubble<insertion<merge<quick<selection)이
+# 학습 흐름과 어긋난다(merge/quick이 단순 정렬보다 앞으로). 그래서 교육 순서를 명시 고정한다.
+# 단순 O(N^2) 정렬(버블·선택·삽입) → 분할정복 O(N log N) 정렬(병합·퀵).
+# 적은 글은 이 순서, 나머지(새 글)는 자동으로 뒤에 붙는다(append_unmatched).
+title: 정렬 (Sorting)
+nav:
+  - bubble-sort.md
+  - selection-sort.md
+  - insertion-sort.md
+  - merge-sort.md
+  - quick-sort.md

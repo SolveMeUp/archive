@@ -64,6 +64,7 @@ title: 다익스트라 (Dijkstra's Algorithm)   # 글 제목 (알고리즘명은
 ```
 content/
 ├── data-structure/
+├── sorting/
 ├── graph/
 │   ├── tree/
 │   ├── shortest-path/

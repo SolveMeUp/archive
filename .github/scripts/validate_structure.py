@@ -24,6 +24,7 @@ from pathlib import Path
 # 글(<슬러그>.md)은 이 경로들 중 하나 바로 아래에 들어간다.
 KNOWN_CATEGORIES = {
     "data-structure",
+    "sorting",
     "graph",
     "graph/tree",
     "graph/shortest-path",
