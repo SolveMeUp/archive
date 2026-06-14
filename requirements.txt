@@ -2,3 +2,6 @@
 # mkdocs-material이 mkdocs·pymdown-extensions(arithmatex 등)를 함께 끌어온다.
 # 상한(<10)은 MkDocs 2.0의 비호환 변경(테마 오버라이드 붕괴 등)에 자동으로 빨려들지 않게.
 mkdocs-material>=9.5,<10
+# nav를 content/ 폴더 구조에서 자동 생성(폴더별 .nav.yml로 라벨·순서 제어).
+# 구 mkdocs-awesome-pages-plugin의 v3 후속. 상한(<4)은 메이저 비호환 차단.
+mkdocs-awesome-nav>=3.3,<4

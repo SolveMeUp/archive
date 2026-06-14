@@ -1,0 +1,9 @@
+# 카테고리 한글(영문) 라벨. 글 순서는 자동정렬(파일명) 기본.
+# 이 카테고리는 자연정렬(0-1-knapsack < bounded-knapsack < unbounded-knapsack)이
+# 교육 흐름(0/1→다중→무한)과 일치해 순서 지정이 필요 없다.
+# 순서를 고정해야 하면 아래처럼 nav: 에 글을 나열한다(적은 건 그 순서, 나머지는 자동으로 뒤).
+#   nav:
+#     - 0-1-knapsack.md
+#     - bounded-knapsack.md
+#     - unbounded-knapsack.md
+title: 배낭 (Knapsack)
