@@ -1,0 +1,9 @@
+# 카테고리 한글(영문) 라벨.
+# 두 글은 세그먼트 트리(기본)·K번째 수 찾기(응용) 한 쌍으로, 응용 글이
+# 기본 글을 전제로 상호 참조한다. 그래서 교육 순서(기본 → 응용)를 명시 고정한다.
+# (파일명 자동정렬은 '-'<'.'이라 segment-tree-kth-element가 segment-tree보다 앞서 역순이 된다.)
+# 적은 글은 이 순서, 나머지(새 글)는 자동으로 뒤에 붙는다(append_unmatched).
+title: 자료구조 (Data Structure)
+nav:
+  - segment-tree.md
+  - segment-tree-kth-element.md
