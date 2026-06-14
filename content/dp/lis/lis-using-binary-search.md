@@ -127,14 +127,6 @@ $15$ 는 dp 배열의 $1$ 번 인덱스에 위치했다. `pos` 배열의 $1$ 번
 
 ---
 
-## 4. Problems
-
-- [BaekJoon 12015번 - 가장 긴 증가하는 부분 수열 2](https://www.acmicpc.net/problem/12015)
-- [BaekJoon 14003번 - 가장 긴 증가하는 부분 수열 5](https://www.acmicpc.net/problem/14003)
-- [BaekJoon 13711번 - LCS 4](https://www.acmicpc.net/problem/13711)
-
----
-
 ## Ref
 
 - [wikipedia - 최장 증가 부분 수열](https://en.wikipedia.org/wiki/Longest_increasing_subsequence)

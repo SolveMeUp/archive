@@ -91,13 +91,6 @@ int kth(int node, int start, int end, int k) {
 
 ---
 
-## 4. Problems
-
-- [BaekJoon 2243번 - 사탕상자](https://www.acmicpc.net/problem/2243)
-- [BaekJoon 1168번 - 요세푸스 문제 2](https://www.acmicpc.net/problem/1168)
-
----
-
 ## Ref
 
 - [cp-algorithms - Segment Tree](https://cp-algorithms.com/data_structures/segment_tree.html)

@@ -643,16 +643,6 @@ struct SegTree {
 
 ---
 
-## 8. Problems
-
-- [BaekJoon 2042번 - 구간 합 구하기](https://www.acmicpc.net/problem/2042)
-- [BaekJoon 11505번 - 구간 곱 구하기](https://www.acmicpc.net/problem/11505)
-- [BaekJoon 2357번 - 최솟값과 최댓값](https://www.acmicpc.net/problem/2357)
-- [BaekJoon 18436번 - 수열과 쿼리 37](https://www.acmicpc.net/problem/18436)
-- [BaekJoon 14428번 - 수열과 쿼리 16](https://www.acmicpc.net/problem/14428)
-
----
-
 ## Ref
 
 - [BOJ BOOK - 세그먼트 트리](https://book.acmicpc.net/ds/segment-tree)

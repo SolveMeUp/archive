@@ -63,13 +63,6 @@ for (int i = 1; i <= n; i++) {
 
 ---
 
-## 4. Problems
-
-- [BaekJoon 11659번 - 구간 합 구하기 4](https://www.acmicpc.net/problem/11659)
-- [BaekJoon 21921번 - 블로그](https://www.acmicpc.net/problem/21921)
-
----
-
 ## Ref
 
 - [BOJ BOOK - 누적 합](https://book.acmicpc.net/algorithm/prefix-sum)

@@ -93,14 +93,6 @@ dp 배열에서 최댓값이 위치한 곳이 LIS의 끝 원소이므로 해당 
 
 ---
 
-## 4. Problems
-
-- [BaekJoon 11053번 - 가장 긴 증가하는 부분 수열](https://www.acmicpc.net/problem/11053)
-- [BaekJoon 11054번 - 가장 긴 바이토닉 부분 수열](https://www.acmicpc.net/problem/11054)
-- [BaekJoon 14002번 - 가장 긴 증가하는 부분 수열 4](https://www.acmicpc.net/problem/14002)
-
----
-
 ## Ref
 
 - [wikipedia - 최장 증가 부분 수열](https://en.wikipedia.org/wiki/Longest_increasing_subsequence)

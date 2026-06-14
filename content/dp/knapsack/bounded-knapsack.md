@@ -47,3 +47,5 @@ title: 다중 배낭 문제 (Bounded Knapsack Problem)
 
 - [wikipedia - 배낭 문제](https://ko.wikipedia.org/wiki/%EB%B0%B0%EB%82%AD_%EB%AC%B8%EC%A0%9C)
 - [cp-algorithms - Knapsack Problem](https://cp-algorithms.com/dynamic_programming/knapsack.html)
+
+---

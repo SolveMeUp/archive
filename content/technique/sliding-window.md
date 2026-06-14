@@ -115,17 +115,6 @@ $$
 
 ---
 
-## 4. Problems
-
-- [BaekJoon 21921번 - 블로그](https://www.acmicpc.net/problem/21921)
-- [BaekJoon 24499번 - blobyum](https://www.acmicpc.net/problem/24499)
-- [BaekJoon 15565번 - 귀여운 라이언](https://www.acmicpc.net/problem/15565)
-- [BaekJoon 1522번 - 문자열 교환](https://www.acmicpc.net/problem/1522)
-- [BaekJoon 1593번 - 문자 해독](https://www.acmicpc.net/problem/1593)
-- [BaekJoon 20437번 - 문자열 게임 2](https://www.acmicpc.net/problem/20437)
-
----
-
 ## Ref
 
 - [IOI KOREA - Sliding Window, 슬라이딩 윈도우](https://www.youtube.com/watch?v=uH9VJRIpIDY)
